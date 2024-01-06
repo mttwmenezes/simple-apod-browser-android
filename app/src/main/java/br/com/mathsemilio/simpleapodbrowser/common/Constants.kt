@@ -16,9 +16,6 @@ limitations under the License.
 
 package br.com.mathsemilio.simpleapodbrowser.common
 
-const val BASE_URL = "https://api.nasa.gov/planetary/"
-const val APOD_ENDPOINT = "apod"
-
 const val FAVORITE_APOD_TABLE = "favorite_apod_table"
 const val FAVORITE_APOD_DATABASE = "favorite_apod_database"
 

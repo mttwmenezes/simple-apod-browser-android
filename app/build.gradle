@@ -14,6 +14,10 @@ android {
         targetSdkVersion 31
         versionCode 9
         versionName "stable-1.0.9"
+
+        buildConfigField "String", 'BASE_URL', '"https://api.nasa.gov/planetary/"'
+        buildConfigField "String", 'ENDPOINT', '"apod"'
+        buildConfigField "String", 'PUBLIC_KEY', '"DEMO_KEY"'
     }
 
     buildTypes {
@@ -22,6 +26,10 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     compileOptions {

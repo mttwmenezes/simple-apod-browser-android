@@ -16,31 +16,30 @@ limitations under the License.
 
 package br.com.mathsemilio.simpleapodbrowser.networking.api
 
-import retrofit2.http.*
-import retrofit2.Response
-import br.com.mathsemilio.simpleapodbrowser.common.APOD_ENDPOINT
+import br.com.mathsemilio.simpleapodbrowser.BuildConfig
 import br.com.mathsemilio.simpleapodbrowser.domain.model.ApodSchema
-import br.com.mathsemilio.simpleapodbrowser.networking.keyprovider.APIKeyProvider
+import retrofit2.Response
+import retrofit2.http.*
 
 interface ApodApi {
 
-    @GET(APOD_ENDPOINT)
+    @GET(BuildConfig.ENDPOINT)
     suspend fun fetchApodsFromDateRange(
-        @Query("api_key") key: String = APIKeyProvider.key,
+        @Query("api_key") key: String = BuildConfig.PUBLIC_KEY,
         @Query("start_date") startDate: String,
         @Query("thumbs") includeThumbnail: Boolean = true
     ): Response<List<ApodSchema>>
 
-    @GET(APOD_ENDPOINT)
+    @GET(BuildConfig.ENDPOINT)
     suspend fun fetchApodFromDate(
-        @Query("api_key") key: String = APIKeyProvider.key,
+        @Query("api_key") key: String = BuildConfig.PUBLIC_KEY,
         @Query("date") date: String,
         @Query("thumbs") includeThumbnail: Boolean = true
     ): Response<ApodSchema>
 
-    @GET(APOD_ENDPOINT)
+    @GET(BuildConfig.ENDPOINT)
     suspend fun fetchRandomApod(
-        @Query("api_key") key: String = APIKeyProvider.key,
+        @Query("api_key") key: String = BuildConfig.PUBLIC_KEY,
         @Query("count") count: Int = 1,
         @Query("thumbs") includeThumbnail: Boolean = true
     ): Response<List<ApodSchema>>

@@ -18,8 +18,8 @@ package br.com.mathsemilio.simpleapodbrowser.common.di
 
 import retrofit2.Retrofit
 import android.app.Application
+import br.com.mathsemilio.simpleapodbrowser.BuildConfig
 import retrofit2.converter.gson.GsonConverterFactory
-import br.com.mathsemilio.simpleapodbrowser.common.BASE_URL
 import br.com.mathsemilio.simpleapodbrowser.networking.api.ApodApi
 import br.com.mathsemilio.simpleapodbrowser.common.eventbus.EventBus
 import br.com.mathsemilio.simpleapodbrowser.common.eventbus.EventPublisher
@@ -29,7 +29,7 @@ class CompositionRoot(val application: Application) {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
