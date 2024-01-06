@@ -5,14 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
     namespace 'br.com.mathsemilio.simpleapodbrowser'
 
     defaultConfig {
         applicationId "br.com.mathsemilio.simpleapodbrowser"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 34
+        compileSdk 34
         versionCode 9
         versionName "stable-1.0.9"
 

@@ -28,9 +28,9 @@ class TapGestureHelper : Observable<TapGestureHelper.Listener>,
 
     private val listeners = HashSet<Listener>()
 
-    override fun onDown(e: MotionEvent?): Boolean = true
+    override fun onDown(e: MotionEvent): Boolean = true
 
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
+    override fun onSingleTapUp(e: MotionEvent): Boolean {
         listeners.forEach { listener -> listener.onScreenTapped() }
         return true
     }
