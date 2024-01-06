@@ -136,7 +136,7 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
     override fun onHideSystemUIRequested() = view.hideSystemUI()
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        gestureDetector.onTouchEvent(event)
+        event?.let { gestureDetector.onTouchEvent(it) }
         return super.onTouchEvent(event)
     }
 
