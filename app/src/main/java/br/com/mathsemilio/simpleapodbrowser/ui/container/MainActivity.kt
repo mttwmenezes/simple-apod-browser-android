@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.GestureDetectorCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -52,6 +53,8 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        enableEdgeToEdge()
+
         view = MainActivityViewImpl(layoutInflater, parent = null)
 
         permissionsHelper = compositionRoot.permissionsHelper
@@ -61,6 +64,8 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
         setContentView(view.rootView)
 
         view.bind(window)
+
+        view.adjustWindowInsets()
 
         setupNavController()
 

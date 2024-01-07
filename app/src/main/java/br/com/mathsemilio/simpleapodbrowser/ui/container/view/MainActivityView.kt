@@ -49,4 +49,6 @@ abstract class MainActivityView : BaseView() {
     abstract fun showSystemUI()
 
     abstract fun hideSystemUI()
+
+    abstract fun adjustWindowInsets()
 }

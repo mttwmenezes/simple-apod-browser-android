@@ -19,7 +19,11 @@ package br.com.mathsemilio.simpleapodbrowser.ui.container.view
 import android.view.*
 import android.os.Build
 import android.graphics.Color
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import br.com.mathsemilio.simpleapodbrowser.R
 import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -109,5 +113,20 @@ class MainActivityViewImpl(
             rootView.showSystemUI()
         else
             window.showSystemUI()
+    }
+
+    override fun adjustWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            view.updatePadding(
+                left = insets.left,
+                right = insets.right,
+                top = insets.top,
+                bottom = insets.bottom
+            )
+
+            WindowInsetsCompat.CONSUMED
+        }
     }
 }
