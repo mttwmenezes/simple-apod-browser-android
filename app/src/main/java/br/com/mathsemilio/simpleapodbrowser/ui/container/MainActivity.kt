@@ -29,7 +29,7 @@ import androidx.navigation.ui.setupWithNavController
 import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.ui.common.BaseActivity
 import br.com.mathsemilio.simpleapodbrowser.ui.common.delegate.ContainerLayoutDelegate
-import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.PermissionsHelper
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionHandler
 import br.com.mathsemilio.simpleapodbrowser.ui.common.util.launchWebPage
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityView
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityViewImpl
@@ -40,7 +40,7 @@ class MainActivity : BaseActivity(), ContainerLayoutDelegate {
 
     private lateinit var navController: NavController
 
-    private lateinit var permissionsHelper: PermissionsHelper
+    private lateinit var permissionHandler: PermissionHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity(), ContainerLayoutDelegate {
         enableEdgeToEdge()
 
         view = MainActivityViewImpl(layoutInflater, parent = null)
-        permissionsHelper = compositionRoot.permissionsHelper
+        permissionHandler = compositionRoot.permissionHandler
 
         setContentView(view.rootView)
 
@@ -115,7 +115,7 @@ class MainActivity : BaseActivity(), ContainerLayoutDelegate {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionsHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionHandler.onRequestPermissionResult(requestCode, permissions, grantResults)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

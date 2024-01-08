@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Matheus Menezes
+Copyright 2023 Matheus Menezes
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,17 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package br.com.mathsemilio.simpleapodbrowser.common.util.converter
+package br.com.mathsemilio.simpleapodbrowser.ui.common.permission
 
-import android.graphics.*
-import java.io.ByteArrayOutputStream
-
-fun Bitmap.toByteArray(): ByteArray {
-    val byteArrayOutputStream = ByteArrayOutputStream()
-    this.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream)
-    return byteArrayOutputStream.toByteArray()
-}
-
-fun ByteArray.toBitmap(): Bitmap {
-    return BitmapFactory.decodeByteArray(this, 0, this.size)
+enum class PermissionRequestResult {
+    GRANTED,
+    DENIED,
+    DENIED_PERMANENTLY
 }

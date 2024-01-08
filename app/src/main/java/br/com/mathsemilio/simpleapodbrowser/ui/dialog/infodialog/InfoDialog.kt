@@ -19,6 +19,7 @@ package br.com.mathsemilio.simpleapodbrowser.ui.dialog.infodialog
 import android.os.Bundle
 import android.app.Dialog
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
 import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.common.*
@@ -58,9 +59,12 @@ class InfoDialog : BaseDialogFragment() {
         val dialogView = layoutInflater.inflate(R.layout.layout_info_dialog, null)
         dialogBuilder.setView(dialogView)
 
-        setupDialogViews()
-
         return dialogBuilder.create()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupDialogViews()
     }
 
     private fun setupDialogViews() {

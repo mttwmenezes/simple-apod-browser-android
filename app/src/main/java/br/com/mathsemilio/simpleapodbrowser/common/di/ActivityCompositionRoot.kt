@@ -17,19 +17,19 @@ limitations under the License.
 package br.com.mathsemilio.simpleapodbrowser.common.di
 
 import androidx.appcompat.app.AppCompatActivity
-import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.*
 import br.com.mathsemilio.simpleapodbrowser.ui.common.delegate.*
 import br.com.mathsemilio.simpleapodbrowser.networking.endpoint.ApodEndpoint
 import br.com.mathsemilio.simpleapodbrowser.storage.database.FavoriteApodDatabase
 import br.com.mathsemilio.simpleapodbrowser.storage.endpoint.FavoriteApodEndpoint
 import br.com.mathsemilio.simpleapodbrowser.storage.preferences.PreferencesRepository
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionHandler
 
 class ActivityCompositionRoot(
     private val activity: AppCompatActivity,
     private val compositionRoot: CompositionRoot
 ) {
-    val permissionsHelper by lazy {
-        PermissionsHelper(activity)
+    val permissionHandler by lazy {
+        PermissionHandler(activity)
     }
 
     val application
@@ -49,9 +49,6 @@ class ActivityCompositionRoot(
 
     val preferencesRepository
         get() = PreferencesRepository(application)
-
-    val systemUIDelegate
-        get() = SystemUIDelegate()
 
     val apodEndpoint
         get() = ApodEndpoint(compositionRoot.apodApi)

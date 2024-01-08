@@ -18,6 +18,7 @@ package br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.fragment.findNavController
 import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.common.*
@@ -30,20 +31,30 @@ import br.com.mathsemilio.simpleapodbrowser.domain.usecase.favoriteapod.AddApodT
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.favoriteapod.DeleteFavoriteApodUseCase.*
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.favoriteapod.FetchFavoriteApodStatusUseCase.*
 import br.com.mathsemilio.simpleapodbrowser.ui.common.BaseFragment
+import br.com.mathsemilio.simpleapodbrowser.ui.common.image.ImageExporter
 import br.com.mathsemilio.simpleapodbrowser.ui.common.manager.*
 import br.com.mathsemilio.simpleapodbrowser.ui.common.navigation.ScreensNavigator
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.Permission
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionHandler
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionRequestResult
 import br.com.mathsemilio.simpleapodbrowser.ui.common.util.launchWebPage
 import br.com.mathsemilio.simpleapodbrowser.ui.dialog.promptdialog.PromptDialogEvent
 import br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail.view.*
 import kotlinx.coroutines.*
 
-class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListener {
+class ApodDetailFragment : BaseFragment(),
+    ApodDetailView.Listener,
+    PermissionHandler.RequestResultListener,
+    ImageExporter.Listener,
+    EventListener {
 
     private lateinit var view: ApodDetailView
 
+    private lateinit var permissionHandler: PermissionHandler
     private lateinit var screensNavigator: ScreensNavigator
     private lateinit var messagesManager: MessagesManager
     private lateinit var dialogManager: DialogManager
+    private lateinit var imageExporter: ImageExporter
 
     private lateinit var eventSubscriber: EventSubscriber
 
@@ -66,9 +77,11 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
 
         setHasOptionsMenu(true)
 
+        permissionHandler = compositionRoot.permissionsHandler
         screensNavigator = ScreensNavigator(findNavController())
         messagesManager = compositionRoot.messagesManager
         dialogManager = compositionRoot.dialogManager
+        imageExporter = compositionRoot.imageExporter
 
         eventSubscriber = compositionRoot.eventSubscriber
 
@@ -91,6 +104,25 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
     }
 
     override fun onPlayIconClicked(videoUrl: String) = launchWebPage(videoUrl)
+
+    override fun onPermissionRequestResult(result: PermissionRequestResult) {
+        when (result) {
+            PermissionRequestResult.GRANTED ->
+                imageExporter.export(view.apodImageView.drawable.toBitmap())
+            PermissionRequestResult.DENIED ->
+                dialogManager.showGrantExternalStoragePermissionDialog()
+            PermissionRequestResult.DENIED_PERMANENTLY ->
+                dialogManager.showManuallyGrantPermissionDialog()
+        }
+    }
+
+    override fun onApodImageExportedSuccessfully() {
+        messagesManager.showApodImageExportedMessage()
+    }
+
+    override fun onExportApodImageFailed() {
+        messagesManager.showUnexpectedErrorOccurredMessage()
+    }
 
     override fun onEvent(event: Any) {
         when (event) {
@@ -199,7 +231,19 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
                 dialogManager.showConfirmFavoriteApodDeletionDialog()
                 true
             }
+            R.id.toolbar_action_export_image -> {
+                checkForWriteToExternalStoragePermission()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun checkForWriteToExternalStoragePermission() {
+        if (permissionHandler.hasPermission(Permission.WRITE_EXTERNAL_STORAGE)) {
+            imageExporter.export(view.apodImageView.drawable.toBitmap())
+        } else {
+            permissionHandler.request(Permission.WRITE_EXTERNAL_STORAGE)
         }
     }
 
@@ -248,6 +292,8 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
         super.onStart()
         view.addObserver(this)
         eventSubscriber.subscribe(this)
+        permissionHandler.addObserver(this)
+        imageExporter.addObserver(this)
         view.bind(apod)
     }
 
@@ -255,6 +301,8 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
         super.onStop()
         view.removeObserver(this)
         eventSubscriber.unsubscribe(this)
+        permissionHandler.removeObserver(this)
+        imageExporter.removeObserver(this)
         coroutineScope.coroutineContext.cancelChildren()
     }
 }

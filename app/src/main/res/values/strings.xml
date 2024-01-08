@@ -23,7 +23,7 @@
     <string name="toolbar_action_title_delete">Delete</string>
     <string name="toolbar_action_title_search">Search</string>
     <string name="toolbar_action_title_visit_apod_website">Visit APOD website</string>
-    <string name="toolbar_action_title_export_apod_image">Export image</string>
+    <string name="toolbar_action_title_export_image">Export image</string>
 
     <!-- Messages -->
     <string name="message_nothing_found">Nothing found</string>
