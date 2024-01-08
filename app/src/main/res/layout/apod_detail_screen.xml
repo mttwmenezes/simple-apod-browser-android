@@ -49,17 +49,6 @@
             tools:text="APOD Title" />
 
         <TextView
-            android:id="@+id/text_view_apod_copyright_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="?textAppearanceBodyMedium"
-            app:layout_constraintEnd_toEndOf="@id/text_view_apod_title"
-            app:layout_constraintStart_toStartOf="@id/text_view_apod_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_apod_title"
-            tools:text="By: Someone" />
-
-        <TextView
             android:id="@+id/text_view_apod_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="@+id/text_view_apod_title"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/text_view_apod_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_apod_copyright_info"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_apod_title"
             tools:text="January 1, 2021" />
 
         <TextView
@@ -86,7 +75,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_apod_date"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="@string/lorem_ipsum" />
+            tools:text="@tools:sample/lorem/random" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

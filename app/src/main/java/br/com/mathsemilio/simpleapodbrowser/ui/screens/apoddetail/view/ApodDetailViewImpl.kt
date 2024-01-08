@@ -34,7 +34,6 @@ class ApodDetailViewImpl(
     private lateinit var imageViewPlayIcon: ImageView
 
     private lateinit var textViewApodTitle: TextView
-    private lateinit var textViewApodCopyrightInfo: TextView
     private lateinit var textViewApodDate: TextView
     private lateinit var textViewApodExplanation: TextView
 
@@ -53,7 +52,6 @@ class ApodDetailViewImpl(
         imageViewPlayIcon = findViewById(R.id.image_view_play_icon)
 
         textViewApodTitle = findViewById(R.id.text_view_apod_title)
-        textViewApodCopyrightInfo = findViewById(R.id.text_view_apod_copyright_info)
         textViewApodDate = findViewById(R.id.text_view_apod_date)
         textViewApodExplanation = findViewById(R.id.text_view_apod_explanation)
     }
@@ -62,7 +60,6 @@ class ApodDetailViewImpl(
         this.apod = apod
 
         loadResourcesBasedOnMediaType()
-        setupCopyrightInfoTextView()
 
         textViewApodTitle.text = apod.title
         textViewApodDate.text = apod.date.formatDate()
@@ -88,12 +85,5 @@ class ApodDetailViewImpl(
             isVisible = true
             setOnClickListener { notify { listener -> listener.onPlayIconClicked(apod.url) } }
         }
-    }
-
-    private fun setupCopyrightInfoTextView() {
-        if (apod.copyright != null)
-            textViewApodCopyrightInfo.text = context.getString(R.string.by, apod.copyright!!)
-        else
-            textViewApodCopyrightInfo.isVisible = false
     }
 }

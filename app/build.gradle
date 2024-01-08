@@ -10,8 +10,8 @@ android {
     defaultConfig {
         applicationId "br.com.mathsemilio.simpleapodbrowser"
         minSdkVersion 21
-        targetSdkVersion 32
-        compileSdk 32
+        targetSdkVersion 34
+        compileSdk 34
         versionCode 9
         versionName "stable-1.0.9"
 
