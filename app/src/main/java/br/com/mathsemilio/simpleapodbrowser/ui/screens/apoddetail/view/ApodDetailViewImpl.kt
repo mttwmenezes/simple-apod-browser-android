@@ -20,7 +20,6 @@ import android.view.*
 import android.widget.*
 import androidx.core.view.isVisible
 import br.com.mathsemilio.simpleapodbrowser.R
-import androidx.core.graphics.drawable.toBitmap
 import br.com.mathsemilio.simpleapodbrowser.common.*
 import br.com.mathsemilio.simpleapodbrowser.domain.model.Apod
 import br.com.mathsemilio.simpleapodbrowser.common.util.date.formatDate
@@ -43,12 +42,7 @@ class ApodDetailViewImpl(
 
     init {
         rootView = layoutInflater.inflate(R.layout.apod_detail_screen, container, false)
-
         initializeViews()
-
-        imageViewApod.setOnClickListener {
-            notify { listener -> listener.onApodImageClicked(imageViewApod.drawable.toBitmap()) }
-        }
     }
 
     override val apodImageView: ImageView

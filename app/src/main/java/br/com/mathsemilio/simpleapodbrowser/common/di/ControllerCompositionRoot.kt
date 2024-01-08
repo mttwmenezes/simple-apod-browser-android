@@ -50,12 +50,6 @@ class ControllerCompositionRoot(private val activityCompositionRoot: ActivityCom
     val preferencesRepository
         get() = activityCompositionRoot.preferencesRepository
 
-    val systemUIDelegate
-        get() = activityCompositionRoot.systemUIDelegate
-
-    val tapGestureHelper
-        get() = activityCompositionRoot.tapGestureHelper
-
     val fetchApodFromDateUseCase
         get() = FetchApodFromDateUseCase(activityCompositionRoot.apodEndpoint)
 

@@ -17,7 +17,6 @@ limitations under the License.
 package br.com.mathsemilio.simpleapodbrowser.common.di
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
 import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.*
 import br.com.mathsemilio.simpleapodbrowser.ui.common.delegate.*
 import br.com.mathsemilio.simpleapodbrowser.networking.endpoint.ApodEndpoint
@@ -29,10 +28,6 @@ class ActivityCompositionRoot(
     private val activity: AppCompatActivity,
     private val compositionRoot: CompositionRoot
 ) {
-    val tapGestureHelper by lazy {
-        TapGestureHelper()
-    }
-
     val permissionsHelper by lazy {
         PermissionsHelper(activity)
     }
@@ -51,9 +46,6 @@ class ActivityCompositionRoot(
 
     val fragmentManager
         get() = activity.supportFragmentManager
-
-    val gestureDetectorCompat
-        get() = GestureDetectorCompat(application, tapGestureHelper)
 
     val preferencesRepository
         get() = PreferencesRepository(application)

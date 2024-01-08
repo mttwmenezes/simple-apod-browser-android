@@ -16,7 +16,6 @@ limitations under the License.
 
 package br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail.view
 
-import android.graphics.Bitmap
 import android.widget.ImageView
 import br.com.mathsemilio.simpleapodbrowser.domain.model.Apod
 import br.com.mathsemilio.simpleapodbrowser.ui.common.view.BaseObservableView
@@ -24,8 +23,6 @@ import br.com.mathsemilio.simpleapodbrowser.ui.common.view.BaseObservableView
 abstract class ApodDetailView : BaseObservableView<ApodDetailView.Listener>() {
 
     interface Listener {
-        fun onApodImageClicked(apodImage: Bitmap)
-
         fun onPlayIconClicked(videoUrl: String)
     }
 

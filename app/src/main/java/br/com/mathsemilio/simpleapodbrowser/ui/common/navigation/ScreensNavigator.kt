@@ -17,8 +17,6 @@ limitations under the License.
 package br.com.mathsemilio.simpleapodbrowser.ui.common.navigation
 
 import android.os.Bundle
-import android.view.View
-import androidx.navigation.fragment.*
 import androidx.navigation.NavController
 import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.common.*
@@ -47,22 +45,6 @@ class ScreensNavigator(private val navController: NavController) {
         argumentBundle.putSerializable(ARG_APOD, favoriteApod)
 
         navController.navigate(R.id.action_apod_favorites_to_apod_detail_screen, argumentBundle)
-    }
-
-    fun toApodImageDetail(apodImage: ByteArray, transitionView: View) {
-        val argumentBundle = Bundle(1)
-        argumentBundle.putByteArray(ARG_APOD_IMAGE, apodImage)
-
-        val navigatorExtras = FragmentNavigatorExtras(
-            transitionView to TRANSITION_APOD_DETAIL_TO_IMAGE_DETAIL
-        )
-
-        navController.navigate(
-            R.id.action_apod_detail_to_apod_image_detail_screen,
-            argumentBundle,
-            null,
-            navigatorExtras
-        )
     }
 
     fun toSettingsScreen() = navController.navigate(R.id.action_global_settings)

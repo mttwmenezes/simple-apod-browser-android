@@ -16,14 +16,12 @@ limitations under the License.
 
 package br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.*
 import androidx.navigation.fragment.findNavController
 import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.common.*
 import br.com.mathsemilio.simpleapodbrowser.common.eventbus.*
-import br.com.mathsemilio.simpleapodbrowser.common.util.converter.toByteArray
 import br.com.mathsemilio.simpleapodbrowser.domain.model.Apod
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.apod.FetchRandomApodUseCase
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.apod.FetchRandomApodUseCase.*
@@ -90,10 +88,6 @@ class ApodDetailFragment : BaseFragment(), ApodDetailView.Listener, EventListene
     ): View {
         view = ApodDetailViewImpl(inflater, container)
         return view.rootView
-    }
-
-    override fun onApodImageClicked(apodImage: Bitmap) {
-        screensNavigator.toApodImageDetail(apodImage.toByteArray(), view.apodImageView)
     }
 
     override fun onPlayIconClicked(videoUrl: String) = launchWebPage(videoUrl)
