@@ -22,6 +22,7 @@ import br.com.mathsemilio.simpleapodbrowser.R
 import br.com.mathsemilio.simpleapodbrowser.ui.dialog.datepicker.DatePickerDialog
 import br.com.mathsemilio.simpleapodbrowser.ui.dialog.infodialog.InfoDialogBuilder
 import br.com.mathsemilio.simpleapodbrowser.ui.dialog.promptdialog.PromptDialogBuilder
+import br.com.mathsemilio.simpleapodbrowser.ui.sheet.ImageCopyrightBottomSheet
 
 class DialogManager(
     private val fragmentManager: FragmentManager,
@@ -74,5 +75,9 @@ class DialogManager(
             .build()
 
         promptDialog.show(fragmentManager, null)
+    }
+
+    fun showImageCopyrightDialog(copyright: String) {
+        ImageCopyrightBottomSheet.newInstance(copyright).also { it.show(fragmentManager, null) }
     }
 }

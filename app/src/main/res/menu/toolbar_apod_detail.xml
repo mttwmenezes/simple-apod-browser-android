@@ -21,6 +21,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/toolbar_action_image_copyright"
+        android:icon="@drawable/ic_outline_info"
+        android:title="@string/image_copyright"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/toolbar_action_export_image"
         android:title="@string/toolbar_action_title_export_image"
         app:showAsAction="never" />

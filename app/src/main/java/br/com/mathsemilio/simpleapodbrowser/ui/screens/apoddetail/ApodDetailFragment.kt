@@ -156,6 +156,7 @@ class ApodDetailFragment : BaseFragment(),
         toolbarActionDeleteFavoriteApod = menu.findItem(R.id.toolbar_action_delete_favorite_apod)
 
         toolbarActionGetRandomApod.isVisible = isRandomApod
+        menu.findItem(R.id.toolbar_action_image_copyright).isVisible = !apod.copyright.isNullOrEmpty()
 
         setupToolbarActionsBasedOnApodType()
 
@@ -229,6 +230,10 @@ class ApodDetailFragment : BaseFragment(),
             }
             R.id.toolbar_action_delete_favorite_apod -> {
                 dialogManager.showConfirmFavoriteApodDeletionDialog()
+                true
+            }
+            R.id.toolbar_action_image_copyright -> {
+                dialogManager.showImageCopyrightDialog(apod.copyright.orEmpty())
                 true
             }
             R.id.toolbar_action_export_image -> {
