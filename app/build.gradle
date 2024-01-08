@@ -10,8 +10,8 @@ android {
     defaultConfig {
         applicationId "br.com.mathsemilio.simpleapodbrowser"
         minSdkVersion 21
-        targetSdkVersion 34
-        compileSdk 34
+        targetSdkVersion 32
+        compileSdk 32
         versionCode 9
         versionName "stable-1.0.9"
 
@@ -49,7 +49,6 @@ dependencies {
     def glide_version = "4.16.0"
     def coroutines_version = "1.7.1"
     def swipe_refresh_layout_version = "1.1.0"
-    def photo_view_version = "2.3.0"
     def navigation_component_version = "2.7.6"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -79,10 +78,7 @@ dependencies {
     // Swipe-Refresh Layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
-    // PhotoView Library
-    implementation "com.github.chrisbanes:PhotoView:$photo_view_version"
-
-    // AndroidX Navigation Component
+    // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_component_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_component_version"
 }

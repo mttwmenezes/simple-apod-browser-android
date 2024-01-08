@@ -19,7 +19,7 @@ package br.com.mathsemilio.simpleapodbrowser.common.di
 import br.com.mathsemilio.simpleapodbrowser.ui.common.manager.*
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.apod.*
 import br.com.mathsemilio.simpleapodbrowser.domain.usecase.favoriteapod.*
-import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.ImageExporter
+import br.com.mathsemilio.simpleapodbrowser.ui.common.image.ImageExporter
 
 class ControllerCompositionRoot(private val activityCompositionRoot: ActivityCompositionRoot) {
 
@@ -44,17 +44,11 @@ class ControllerCompositionRoot(private val activityCompositionRoot: ActivityCom
     val imageExporter
         get() = ImageExporter(activityCompositionRoot.application)
 
-    val permissionsHelper
-        get() = activityCompositionRoot.permissionsHelper
+    val permissionsHandler
+        get() = activityCompositionRoot.permissionHandler
 
     val preferencesRepository
         get() = activityCompositionRoot.preferencesRepository
-
-    val systemUIDelegate
-        get() = activityCompositionRoot.systemUIDelegate
-
-    val tapGestureHelper
-        get() = activityCompositionRoot.tapGestureHelper
 
     val fetchApodFromDateUseCase
         get() = FetchApodFromDateUseCase(activityCompositionRoot.apodEndpoint)

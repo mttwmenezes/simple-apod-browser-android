@@ -16,13 +16,10 @@ limitations under the License.
 
 package br.com.mathsemilio.simpleapodbrowser.ui.container
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.MotionEvent
 import androidx.activity.enableEdgeToEdge
-import androidx.core.view.GestureDetectorCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -30,25 +27,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.mathsemilio.simpleapodbrowser.R
-import br.com.mathsemilio.simpleapodbrowser.ui.common.util.launchWebPage
 import br.com.mathsemilio.simpleapodbrowser.ui.common.BaseActivity
 import br.com.mathsemilio.simpleapodbrowser.ui.common.delegate.ContainerLayoutDelegate
-import br.com.mathsemilio.simpleapodbrowser.ui.common.delegate.SystemUIDelegate
-import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.PermissionsHelper
-import br.com.mathsemilio.simpleapodbrowser.ui.common.helper.TapGestureHelper
+import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionHandler
+import br.com.mathsemilio.simpleapodbrowser.ui.common.util.launchWebPage
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityView
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityViewImpl
 
-class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutDelegate {
+class MainActivity : BaseActivity(), ContainerLayoutDelegate {
 
     private lateinit var view: MainActivityView
 
     private lateinit var navController: NavController
 
-    private lateinit var permissionsHelper: PermissionsHelper
-    private lateinit var tapGestureHelper: TapGestureHelper
-
-    private lateinit var gestureDetector: GestureDetectorCompat
+    private lateinit var permissionHandler: PermissionHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,14 +48,9 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
         enableEdgeToEdge()
 
         view = MainActivityViewImpl(layoutInflater, parent = null)
-
-        permissionsHelper = compositionRoot.permissionsHelper
-        tapGestureHelper = compositionRoot.tapGestureHelper
-        gestureDetector = compositionRoot.gestureDetectorCompat
+        permissionHandler = compositionRoot.permissionHandler
 
         setContentView(view.rootView)
-
-        view.bind(window)
 
         view.adjustWindowInsets()
 
@@ -110,39 +97,16 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
     private fun setOnDestinationChangedListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.ApodDetailScreen -> onNavigateToApodDetailScreen()
-                R.id.ApodImageDetailScreen -> onNavigateToImageDetailScreen()
+                R.id.ApodDetailScreen -> view.hideBottomNavigationView()
                 R.id.SettingsScreen -> view.hideBottomNavigationView()
-                else -> resetTopLevelViews()
+                else -> showTopLevelViews()
             }
         }
     }
 
-    private fun onNavigateToApodDetailScreen() {
+    private fun showTopLevelViews() {
         view.showToolbar()
-        view.revertStatusBarColor()
-        view.hideBottomNavigationView()
-    }
-
-    private fun onNavigateToImageDetailScreen() {
-        view.hideToolbar()
-        view.hideBottomNavigationView()
-        view.setStatusBarColor(Color.BLACK)
-    }
-
-    private fun resetTopLevelViews() {
-        view.showToolbar()
-        view.revertStatusBarColor()
         view.showBottomNavigationView()
-    }
-
-    override fun onShowSystemUIRequested() = view.showSystemUI()
-
-    override fun onHideSystemUIRequested() = view.hideSystemUI()
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        event?.let { gestureDetector.onTouchEvent(it) }
-        return super.onTouchEvent(event)
     }
 
     override fun onRequestPermissionsResult(
@@ -151,7 +115,7 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionsHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionHandler.onRequestPermissionResult(requestCode, permissions, grantResults)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -165,6 +129,7 @@ class MainActivity : BaseActivity(), SystemUIDelegate.Listener, ContainerLayoutD
                 launchWebPage(getString(R.string.apod_website_url))
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

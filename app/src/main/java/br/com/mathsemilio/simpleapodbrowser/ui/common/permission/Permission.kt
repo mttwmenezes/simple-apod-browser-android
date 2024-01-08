@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Matheus Menezes
+Copyright 2023 Matheus Menezes
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,22 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
  */
 
-package br.com.mathsemilio.simpleapodbrowser.ui.screens.apodimagedetail.view
+package br.com.mathsemilio.simpleapodbrowser.ui.common.permission
 
-import android.graphics.Bitmap
-import br.com.mathsemilio.simpleapodbrowser.ui.common.view.BaseObservableView
+import android.Manifest
 
-abstract class ApodImageDetailView : BaseObservableView<ApodImageDetailView.Listener>() {
-
-    interface Listener {
-        fun onToolbarNavigationIconClicked()
-
-        fun onToolbarActionExportApodImageClicked()
+data class Permission(
+    val androidName: String,
+    val requestCode: Int
+) {
+    companion object {
+        val WRITE_EXTERNAL_STORAGE = Permission(
+            androidName = Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            requestCode = 1
+        )
     }
-
-    abstract fun bind(apodImage: Bitmap)
-
-    abstract fun showToolbar()
-
-    abstract fun hideToolbar()
 }

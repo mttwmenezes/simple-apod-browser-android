@@ -17,17 +17,13 @@ limitations under the License.
 package br.com.mathsemilio.simpleapodbrowser.ui.container.view
 
 import android.view.*
-import android.os.Build
-import android.graphics.Color
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import br.com.mathsemilio.simpleapodbrowser.R
 import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.appbar.MaterialToolbar
-import br.com.mathsemilio.simpleapodbrowser.ui.common.util.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivityViewImpl(
@@ -35,17 +31,12 @@ class MainActivityViewImpl(
     parent: ViewGroup?
 ) : MainActivityView() {
 
-    private lateinit var window: Window
-
     private lateinit var materialToolbarApp: MaterialToolbar
     private lateinit var fragmentContainerApp: FragmentContainerView
     private lateinit var bottomNavigationViewApp: BottomNavigationView
 
-    private var previousStatusBarColor = 0
-
     init {
         rootView = layoutInflater.inflate(R.layout.activity_main, parent, false)
-
         initializeViews()
     }
 
@@ -64,14 +55,6 @@ class MainActivityViewImpl(
     override val bottomNavigationView
         get() = bottomNavigationViewApp
 
-    override val statusBarColor: Int
-        get() = window.statusBarColor
-
-    override fun bind(window: Window) {
-        this.window = window
-        previousStatusBarColor = window.statusBarColor
-    }
-
     override fun showToolbar() {
         materialToolbarApp.isVisible = true
     }
@@ -86,33 +69,6 @@ class MainActivityViewImpl(
 
     override fun hideBottomNavigationView() {
         bottomNavigationViewApp.isVisible = false
-    }
-
-    override fun setStatusBarColor(color: Int) {
-        window.apply {
-            previousStatusBarColor = statusBarColor
-            statusBarColor = Color.TRANSPARENT
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            statusBarColor = color
-        }
-    }
-
-    override fun revertStatusBarColor() {
-        window.statusBarColor = previousStatusBarColor
-    }
-
-    override fun hideSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-            rootView.hideSystemUI()
-        else
-            window.hideSystemUI()
-    }
-
-    override fun showSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-            rootView.showSystemUI()
-        else
-            window.showSystemUI()
     }
 
     override fun adjustWindowInsets() {

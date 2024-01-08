@@ -40,18 +40,7 @@
         android:id="@+id/ApodDetailScreen"
         android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail.ApodDetailFragment"
         android:label="@string/details"
-        tools:layout="@layout/apod_detail_screen">
-
-        <action
-            android:id="@+id/action_apod_detail_to_apod_image_detail_screen"
-            app:destination="@id/ApodImageDetailScreen" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/ApodImageDetailScreen"
-        android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.apodimagedetail.ApodImageDetailFragment"
-        tools:layout="@layout/apod_image_detail_screen" />
+        tools:layout="@layout/apod_detail_screen" />
 
     <fragment
         android:id="@+id/SettingsScreen"
