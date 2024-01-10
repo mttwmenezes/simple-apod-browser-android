@@ -70,10 +70,18 @@
     <string name="preference_title_clear_image_cache">Clear image cache</string>
     <string name="preference_title_app_version">App version</string>
 
+    <!-- Latest -->
+    <string name="tag_new">New</string>
+    <string name="last_week">Last week</string>
+    <string name="last_two_weeks">Last two weeks</string>
+    <string name="last_month">Last month</string>
+
     <!-- Apod detail screen -->
     <string name="image_copyright">Image copyright</string>
 
     <!-- Example -->
+    <string name="example_apod_title">Saturn in Blue and Gold</string>
     <string name="example_apod_copyright">Cassini Imaging Team, SSI, JPL, ESA, NASA</string>
+    <string name="example_apod_date">May 3, 2006</string>
 
 </resources>
