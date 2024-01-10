@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @Module
 object ApplicationModule {
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
@@ -24,6 +24,7 @@ object ApplicationModule {
     }
 
     @Provides
+    @Singleton
     fun provideApodService(retrofit: Retrofit): ApodService {
         return retrofit.create(ApodService::class.java)
     }
