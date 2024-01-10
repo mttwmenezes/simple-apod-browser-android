@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
@@ -11,9 +12,9 @@
         android:id="@+id/period_filters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:checkedChip="@id/option_last_week"
         app:chipSpacingHorizontal="16dp"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        tools:checkedChip="@id/option_last_week">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/option_last_week"
