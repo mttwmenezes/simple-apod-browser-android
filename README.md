@@ -1,32 +1,36 @@
 # Simple APOD Browser
-Astronomical Picture of the Day client application for Android.
+APOD client app for Android.
 
-## Objective
-This application makes it easy to find and see the latest APODs. It also enables the user to bookmark their favorite ones for easy future access. The app also features other interesting features, like picking APOD by date and "Feeling lucky...", which picks an random APOD.
+## What is APOD?
+APOD is short for [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html), 
+which is a website provided by NASA and the Michigan Technological University. According to the website:
+> Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer.
 
-### What is APOD?
-APOD is short for [Astronomical Picture of the Day](https://en.wikipedia.org/wiki/Astronomy_Picture_of_the_Day), which is a website provided by NASA and the Michigan Technological University. According to the [official website](https://apod.nasa.gov/apod/astropix.html): "Each day a different image or photograph of our universe is featured, along with a brief explanation written by a professional astronomer."
+## Features
+- Customizable feed date range
+- Feeling lucky... (Random APOD picker)
+- Pick APOD by date
+- Favorite APODs
+- Export images
 
-**Important:** 
-This application makes use of the APOD API, which is part of the <a href="https://api.nasa.gov/">open APIs</a> provided by NASA.
+## API
+This app makes use of the APOD API, which is part of the open APIs provided by NASA. The API is open-source and
+is available on [GitHub](https://github.com/nasa/apod-api).
 
-## Build Instructions
-Before building the project, you either need to provide your own key or use the API's demo key.
-Open the ```ApodApi.kt``` file and replace all occurrences of ```APIKeyProvider.key``` with your key or with "DEMO_KEY".
+## Build instructions
+By default, the app uses the APIs `DEMO_KEY` public key for accessing its services. If you wish to use your own,
+open the `ApodApi.kt` file and replace all occurrences of `BuildConfig.PUBLIC_KEY`. You can generate a key at 
+[NASA's Open APIs website](https://api.nasa.gov/).
 
-**Note:** You can generate an API key at the <a href="https://api.nasa.gov/">NASA Open APIs website</a>.
-
-## Development Technologies
-3rd party libraries used:
-
-1. <a href="https://developer.android.com/training/data-storage/room/">Room</a>;
-2. <a href="https://square.github.io/retrofit/">Retrofit</a>;
-3. <a href="https://github.com/bumptech/glide">Glide</a>;
-4. <a href="https://developer.android.com/kotlin/coroutines">Kotlin Coroutines for Android</a>;
-5. <a href="https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout">Swipe-Refresh Layout</a>;
-6. <a href="https://github.com/Baseflow/PhotoView">PhotoView</a>;
-7. <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Jetpack Navigation Component</a>;
-8. <a href="https://developer.android.com/jetpack/androidx/releases/preference/">Jetpack Preference</a>.
+## Development technologies
+Libraries/Frameworks used:
+- <a href="https://developer.android.com/training/data-storage/room/">Room</a>
+- <a href="https://square.github.io/retrofit/">Retrofit</a>
+- <a href="https://github.com/bumptech/glide">Glide</a>
+- <a href="https://developer.android.com/kotlin/coroutines">Kotlin Coroutines</a>
+- <a href="https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout">Swipe-Refresh Layout</a>
+- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Component</a>
+- <a href="https://developer.android.com/jetpack/androidx/releases/preference/">AndroidX Preference</a>
 
 ## License
 ```
