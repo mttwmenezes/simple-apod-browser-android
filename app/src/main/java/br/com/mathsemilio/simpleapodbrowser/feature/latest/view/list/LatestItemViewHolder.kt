@@ -36,7 +36,7 @@ sealed class LatestItemViewHolder(itemView: View) : RecyclerView.ViewHolder(item
         private val binding: ItemPeriodFilterBinding
     ) : LatestItemViewHolder(binding.root) {
 
-        private val filterOptions = mapOf(
+        private val options = mapOf(
             R.id.option_last_week to PeriodFilterOption.LAST_WEEK,
             R.id.option_last_two_weeks to PeriodFilterOption.LAST_TWO_WEEKS,
             R.id.option_last_month to PeriodFilterOption.LAST_MONTH
@@ -46,13 +46,11 @@ sealed class LatestItemViewHolder(itemView: View) : RecyclerView.ViewHolder(item
             item: LatestListItem.PeriodFilter,
             onPeriodFilterChanged: (PeriodFilterOption) -> Unit
         ) {
-            val chipId = filterOptions.filterValues { it == item.periodSelected }.keys.first()
+            val chipId = options.filterValues { it == item.periodSelected }.keys.first()
             binding.periodFilters.apply {
                 check(chipId)
                 setOnCheckedStateChangeListener { group, _ ->
-                    onPeriodFilterChanged(
-                        filterOptions[group.checkedChipId] ?: PeriodFilterOption.LAST_WEEK
-                    )
+                    onPeriodFilterChanged(options[group.checkedChipId] ?: PeriodFilterOption.LAST_WEEK)
                 }
             }
         }
