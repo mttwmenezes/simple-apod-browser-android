@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package br.com.mathsemilio.simpleapodbrowser.feature.latest.view.list
+package br.com.mathsemilio.simpleapodbrowser.feature.latest.ui.view.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

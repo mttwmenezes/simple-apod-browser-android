@@ -14,10 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package br.com.mathsemilio.simpleapodbrowser.feature.latest.view.list
+package br.com.mathsemilio.simpleapodbrowser.infrastructure.networking.response
 
-enum class PeriodFilterOption {
-    LAST_WEEK,
-    LAST_TWO_WEEKS,
-    LAST_MONTH
-}
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
+data class ApodResponse(
+    val copyright: String?,
+    val date: String?,
+    val explanation: String?,
+    @SerializedName("hdurl")
+    val hdUrl: String?,
+    @SerializedName("media_type")
+    val mediaType: String?,
+    val title: String?,
+    val url: String,
+    @SerializedName("thumbnail_url")
+    val thumbnailUrl: String?
+) : Serializable

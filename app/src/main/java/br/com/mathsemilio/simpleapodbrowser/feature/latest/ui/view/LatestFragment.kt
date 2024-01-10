@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package br.com.mathsemilio.simpleapodbrowser.feature.latest.view
+package br.com.mathsemilio.simpleapodbrowser.feature.latest.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,8 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.mathsemilio.simpleapodbrowser.databinding.FragmentLatestBinding
-import br.com.mathsemilio.simpleapodbrowser.feature.latest.view.list.LatestListAdapter
-import br.com.mathsemilio.simpleapodbrowser.feature.latest.view.list.PeriodFilterOption
+import br.com.mathsemilio.simpleapodbrowser.feature.latest.ui.view.list.LatestListAdapter
+import br.com.mathsemilio.simpleapodbrowser.feature.latest.ui.view.list.PeriodFilterOption
 
 class LatestFragment : Fragment(), LatestListAdapter.Listener {
 

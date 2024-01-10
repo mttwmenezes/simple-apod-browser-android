@@ -33,7 +33,9 @@ import br.com.mathsemilio.simpleapodbrowser.ui.common.permission.PermissionHandl
 import br.com.mathsemilio.simpleapodbrowser.ui.common.util.launchWebPage
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityView
 import br.com.mathsemilio.simpleapodbrowser.ui.container.view.MainActivityViewImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity(), ContainerLayoutDelegate {
 
     private lateinit var view: MainActivityView

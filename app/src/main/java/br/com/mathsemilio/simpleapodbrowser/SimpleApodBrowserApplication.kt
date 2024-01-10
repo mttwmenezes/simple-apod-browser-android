@@ -17,12 +17,15 @@ limitations under the License.
 package br.com.mathsemilio.simpleapodbrowser
 
 import android.app.Application
-import kotlinx.coroutines.IO_PARALLELISM_PROPERTY_NAME
 import br.com.mathsemilio.simpleapodbrowser.common.di.CompositionRoot
+import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.IO_PARALLELISM_PROPERTY_NAME
 
+@HiltAndroidApp
 class SimpleApodBrowserApplication : Application() {
 
-    private lateinit var compositionRoot: CompositionRoot
+    lateinit var compositionRoot: CompositionRoot
+        private set
 
     override fun onCreate() {
         super.onCreate()
@@ -30,9 +33,5 @@ class SimpleApodBrowserApplication : Application() {
         System.setProperty(IO_PARALLELISM_PROPERTY_NAME, Int.MAX_VALUE.toString())
 
         compositionRoot = CompositionRoot(this)
-    }
-
-    fun getCompositionRoot(): CompositionRoot {
-        return compositionRoot
     }
 }
