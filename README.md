@@ -1,6 +1,8 @@
 # Simple APOD Browser
 APOD client app for Android.
 
+[![Simple-APOD-Browser-Git-README-image.png](https://i.postimg.cc/wBX2nxgh/Simple-APOD-Browser-Git-README-image.png)](https://postimg.cc/Y4SQWH49)
+
 ## What is APOD?
 APOD is short for [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html), 
 which is a website provided by NASA and the Michigan Technological University. According to the website:
