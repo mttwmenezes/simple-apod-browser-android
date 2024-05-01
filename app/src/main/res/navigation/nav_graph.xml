@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/LatestApodsScreen">
+
+    <fragment
+        android:id="@+id/LatestApodsScreen"
+        android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.latestapods.LatestApodsFragment"
+        android:label="@string/latest"
+        tools:layout="@layout/latest_apods_screen">
+
+        <action
+            android:id="@+id/action_apod_list_to_apod_detail_screen"
+            app:destination="@id/ApodDetailScreen"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/FavoriteApodsScreen"
+        android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.favoriteapods.FavoriteApodsFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/apod_favorites_screen">
+
+        <action
+            android:id="@+id/action_apod_favorites_to_apod_detail_screen"
+            app:destination="@id/ApodDetailScreen"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ApodDetailScreen"
+        android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.apoddetail.ApodDetailFragment"
+        android:label="@string/details"
+        tools:layout="@layout/apod_detail_screen" />
+
+    <fragment
+        android:id="@+id/SettingsScreen"
+        android:name="br.com.mathsemilio.simpleapodbrowser.ui.screens.settings.SettingsFragment"
+        android:label="@string/settings" />
+
+    <action
+        android:id="@+id/action_global_settings"
+        app:destination="@id/SettingsScreen"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+</navigation>
